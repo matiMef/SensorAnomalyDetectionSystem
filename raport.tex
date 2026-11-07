@@ -2,6 +2,7 @@
 \documentclass[12pt,a4paper]{article}
 
 \usepackage[T1]{fontenc}
+\usepackage{lmodern}
 \usepackage[utf8]{inputenc}
 \usepackage[polish]{babel}
 \usepackage{geometry}
@@ -30,5 +31,48 @@ nieprawidłowości.
     \item Mateusz Buchczyk 272816
     \item Remigiusz Szmyt 272819
 \end{enumerate}
+
+\section{Metodologia zbierania i podziału danych}
+
+Pomiary z trzech węzłów ESP32 zapisano na serwerze i zsynchronizowano na podstawie czasu odbioru. Dane podzielono chronologicznie na trzy zbiory w proporcji 70/15/15. Najwcześniejsze pomiary przeznaczono do treningu, kolejne do walidacji, a ostatnie do testu.
+
+\subsection{Zbieranie danych}
+System wykorzystuje trzy węzły ESP32: węzeł z czujnikami AHT20 i BMP280, węzeł z czujnikiem oświetlenia BH1750 oraz węzeł z akcelerometrem ADXL345. Telemetria jest przesyłana przez MQTT do serwera i zapisywana w pliku CSV. W repozytorium plik \texttt{data/raw/telemetry.csv} zawiera czas odbioru \texttt{received\_at}, temat MQTT, identyfikator urządzenia, nazwę kanału, czas urządzenia \texttt{ts\_ms}, numer sekwencyjny, wartość i jednostkę. Jeden wiersz opisuje pojedynczy kanał, a nie kompletny wektor wszystkich pomiarów.
+
+Zebrany zbiór obejmuje około 39 godzin pomiarów.
+
+\subsection{Synchronizacja i reprezentacja pomiarów}
+Przygotowanie danych prowadzi do wspólnej siatki czasowej o kroku 5 s. Punktem odniesienia jest czas odbioru na serwerze, co umożliwia zestawienie kanałów z różnych urządzeń. Nie oznacza to jednoczesnego fizycznego próbkowania: opóźnienia transmisji i różne częstotliwości raportowania pozostają źródłem niepewności.
+
+Każda przygotowana próbka zawiera sześć cech:
+\begin{enumerate}
+    \item \texttt{AHT20\_temperature} -- temperatura;
+    \item \texttt{AHT20\_humidity} -- wilgotność względna;
+    \item \texttt{BMP280\_pressure} -- ciśnienie atmosferyczne;
+    \item \texttt{BH1750} -- natężenie oświetlenia;
+    \item \texttt{ADXL345\_accel\_rms} -- raportowana miara RMS przyspieszenia;
+    \item \texttt{ADXL345\_accel\_max} -- raportowana maksymalna wartość przyspieszenia.
+\end{enumerate}
+Znacznik \texttt{received\_at} służy do uporządkowania danych i nie jest cechą modelu. Dwie miary akcelerometru traktowane są jako osobne kanały.
+
+\subsection{Podział chronologiczny i oczyszczanie}
+Przyjęto chronologiczny podział obserwacji w proporcji 70/15/15: najwcześniejsza część służy do uczenia, następna do walidacji, a ostatnia do końcowego testu. Nie stosuje się losowego mieszania próbek. Sąsiednie odczyty są zależne czasowo, więc losowanie mogłoby umieścić bardzo podobne fragmenty przebiegu jednocześnie w treningu i ocenie. Podział chronologiczny lepiej odpowiada użyciu modelu do analizy późniejszych pomiarów. Nie usuwa jednak całkowicie zależności między zbiorami.
+
+Walidacja służy do analizy zachowania modelu i podejmowania decyzji o parametrach. Zbiór testowy pozostaje przeznaczony do oceny po zakończeniu tych decyzji i nie powinien służyć do dobierania progu. Proporcje dotyczą przyjętego podziału chronologicznego; po przygotowaniu i oczyszczaniu liczebności nie muszą zachowywać ich dokładnie.
+
+Potencjalne wstrząsy usuwa się wyłącznie z części treningowej, aby ograniczyć uczenie zakłóceń jako zachowania odniesienia. Z walidacji i testu nie należy usuwać obserwacji tylko dlatego, że są nietypowe: prowadziłoby to do sztucznego ułatwienia oceny. Regułę oczyszczania należy ustalić na podstawie treningu i wiedzy o eksperymencie, bez korzystania z późniejszych wyników. Nie jest ona równoznaczna z potwierdzeniem etykiet anomalii.
+
+Liczebności zbiorów po przygotowaniu danych przedstawiono w tabeli. Liczebności odnoszą się do gotowych wektorów sześciu cech, nie do surowych wierszy telemetrii.
+\begin{center}
+\begin{tabular}{lrr}
+\hline
+Zbiór & Liczba próbek & Liczba cech \\
+\hline
+Treningowy & 19\,634 & 6 \\
+Walidacyjny & 4\,222 & 6 \\
+Testowy & 4\,222 & 6 \\
+\hline
+\end{tabular}
+\end{center}
 
 \end{document}
