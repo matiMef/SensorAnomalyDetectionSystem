@@ -1,0 +1,94 @@
+\begin{thebibliography}{10}
+
+\bibitem{russell2020}
+Stuart Russell and Peter Norvig.
+\newblock {\em Artificial Intelligence: A Modern Approach}.
+\newblock Pearson, 4 edition, 2020.
+\newblock Wydanie amerykańskie. Materiały autorów:
+  \url{https://aima.eecs.berkeley.edu/}.
+
+\bibitem{zhou2021}
+Zhi-Hua Zhou.
+\newblock {\em Machine Learning}.
+\newblock Springer Singapore, 2021.
+\newblock \url{https://doi.org/10.1007/978-981-15-1967-3}.
+
+\bibitem{goodfellow2016}
+Ian Goodfellow, Yoshua Bengio, and Aaron Courville.
+\newblock {\em Deep Learning}.
+\newblock MIT Press, 2016.
+\newblock \url{https://www.deeplearningbook.org/}.
+
+\bibitem{geron2022}
+Aur{\'e}lien G{\'e}ron.
+\newblock {\em Hands-On Machine Learning with {Scikit-Learn}, {Keras}, and
+  {TensorFlow}}.
+\newblock O'Reilly Media, 3 edition, 2022.
+\newblock Materiały autora do wydania trzeciego:
+  \url{https://github.com/ageron/handson-ml3}.
+
+\bibitem{liu2008}
+Fei~Tony Liu, Kai~Ming Ting, and Zhi-Hua Zhou.
+\newblock Isolation forest.
+\newblock In {\em 2008 Eighth IEEE International Conference on Data Mining},
+  pages 413--422. IEEE, 2008.
+\newblock \url{https://doi.org/10.1109/ICDM.2008.17}.
+
+\bibitem{arnau2024}
+Lucia Arnau~Mu{\~n}oz, Jos{\'e}~Vicente Bern{\'a}~Mart{\'i}nez, Francisco
+  Maci{\'a}~P{\'e}rez, and Iren Lorenzo~Fonseca.
+\newblock Anomaly detection system for data quality assurance in {IoT}
+  infrastructures based on machine learning.
+\newblock {\em Internet of Things}, 25:101095, 2024.
+\newblock Numer artykułu: 101095.
+  \url{https://doi.org/10.1016/j.iot.2024.101095}.
+
+\bibitem{scholkopf2001}
+Bernhard Sch{\"o}lkopf, John~C. Platt, John Shawe-Taylor, Alex~J. Smola, and
+  Robert~C. Williamson.
+\newblock Estimating the support of a high-dimensional distribution.
+\newblock {\em Neural Computation}, 13(7):1443--1471, 2001.
+\newblock \url{https://doi.org/10.1162/089976601750264965}.
+
+\bibitem{schmidl2022}
+Sebastian Schmidl, Phillip Wenig, and Thorsten Papenbrock.
+\newblock Anomaly detection in time series: A comprehensive evaluation.
+\newblock {\em Proceedings of the VLDB Endowment}, 15(9):1779--1797, 2022.
+\newblock \url{https://doi.org/10.14778/3538598.3538602}.
+
+\bibitem{sklearn_docs}
+{scikit-learn developers}.
+\newblock Novelty and outlier detection.
+\newblock Dokumentacja scikit-learn, kanał stable.
+\newblock \url{https://scikit-learn.org/stable/modules/outlier_detection.html}.
+  Dostęp: 11.11.2026.
+
+\bibitem{mosquitto_docs}
+{Eclipse Foundation}.
+\newblock {Eclipse Mosquitto}: broker {MQTT} i repozytorium projektu.
+\newblock Oficjalna strona i kod źródłowy.
+\newblock \url{https://mosquitto.org/};
+  \url{https://github.com/eclipse-mosquitto/mosquitto}. Dostęp: 11.11.2026.
+
+\bibitem{thingsboard_docs}
+{ThingsBoard Authors}.
+\newblock {ThingsBoard}: User guide.
+\newblock Oficjalna dokumentacja platformy.
+\newblock \url{https://thingsboard.io/docs/user-guide/}. Dostęp: 11.11.2026.
+
+\bibitem{grafana_docs}
+{Grafana Labs}.
+\newblock Introduction to {Grafana Alerting}.
+\newblock Oficjalna dokumentacja, kanał latest.
+\newblock \url{https://grafana.com/docs/grafana/latest/alerting/fundamentals/}.
+  Dostęp: 11.11.2026.
+
+\bibitem{espressif_docs}
+{Espressif Systems}.
+\newblock {Arduino-ESP32}: Libraries.
+\newblock Oficjalna dokumentacja, kanał latest.
+\newblock
+  \url{https://docs.espressif.com/projects/arduino-esp32/en/latest/libraries.html}.
+  Dostęp: 11.11.2026.
+
+\end{thebibliography}
